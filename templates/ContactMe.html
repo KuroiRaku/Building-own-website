@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"name="viewport" content="width=device-width, initial-scale=1">
+	<title>Contact Me</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/ContactFormStyle.css')}}">
+	<style type= "text/css">
+	.back__button{
+		align = Center;
+
+	}
+	.back__button:active
+	{
+
+	}
+	h1
+	{
+		background-color: darkgreen;
+	}
+	body
+	{
+		background-color: lightblue;
+	}
+    </style>
+    </head>
+
+		{% if success%}
+		<p> Thank you for your message. We'll get back to you shortly.</p>
+		<button class=" back__button"type="button" onclick="window.location.href='{{ url_for( 'Home')}}'">Back</button>
+		{% else %}
+			{% for message in form.FirstName.errors %}
+				<div class="flash">{{ message }}</div>
+			{% endfor %}
+
+			{% for message in form.Email.errors %}
+				<div class="flash">{{ message }}</div>
+			{% endfor %}
+
+			{% for message in form.Interest.errors %}
+				<div class="flash">{{ message }}</div>
+			{% endfor %}
+
+
+		<body>
+      <h1 align = "Center"> Contact Me!</h1>
+      <hr>
+			{% for message in get_flashed_messages() %}
+				<div class="flash">{{ message }}</div>
+			{% endfor %}
+			<div class="Container">
+				<form class="form-inline" action="{{ url_for('Contact') }}" method=post>
+					{{ form.hidden_tag() }}
+
+					{{ form.FirstName.label }}
+					{{ form.FirstName }}
+
+					{{ form.LastName.label }}
+					{{ form.LastName }}
+
+					{{ form.Email.label }}
+					{{ form.Email }}
+
+					{{ form.Interest.label }}
+					{{ form.Interest(placeholder= "Say what you do the best! e.g. Coding, drawing, storywriting...") }}
+
+					{{ form.Continent.label }}
+					{{ form.Continent }}
+
+					{{ form.Message.label }}
+					{{ form.Message }}
+
+					{{ form.Submit }}
+				</form>
+			</div>
+			<br style="line-height:5;">
+      <button class=" back__button"type="button" onclick="window.location.href='{{ url_for( 'Home')}}'">Back</button>
+			{% endif %}
+
+		</body>
+		</html>

@@ -1,0 +1,104 @@
+
+.left-column, .right-column{
+  width:23%;
+  float:left;
+}
+
+.container div{
+  display: inline-block;
+  box-sizing:border-box;
+  min-height:200px;
+}
+.middle-column{
+  width:50%;
+  color: azure;
+  font-size:14px;
+  font-family:Arial;
+  background-color:darkgreen;
+  float:left;
+  border: solid;
+}
+footer{
+  clear:both;
+  text-align:center;
+  height:50px;
+  color:blue;
+}
+.middle-column caption{
+  font-size: 20px;
+  color: Lavender;
+}
+
+.middle-column h4{
+  font-size: 18px;
+  color: grey;
+}
+ol.Musicstyle{
+  font-family:sans-serif;
+}
+.middle-column li, .middle-column tr, .middle-column th {
+    font-family:'Josefin Slab',sans-serif;
+    font-size: 22px;
+}
+
+.iframe-container{
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+.iframe-container iframe{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tabs{
+  width:100%;
+  height:140%;
+}
+.tabs .tabs__sidebar{
+  height:20%;
+}
+
+.tabs .tabs__sidebar .tabs__button{
+  width:20%;
+  height:100%;
+  float: left;
+  border: none;
+  outline:none;
+  cursor: pointer;
+  padding: 10px;
+  font-family: sans-serif;
+  font-size: 22px;
+  color:red;
+  background-color: #eee;
+}
+.tabs__button:active{
+  background:#dddddd;
+}
+.tabs__button:not(:last-of-type){
+  border-bottom: 1px solid #cccccc;
+}
+.tabs__button--active{
+  font-weight: bold;
+  border:2px solid #009;
+  background: #dddddd;
+}
+
+.tabs__content{
+  padding:18px;
+  font-size:0.8rem;
+  font-family:'Open Sans Condensed',sans-serif;
+  display:none;
+}
+
+.tabs__content--active{
+  display:block;
+}
+
+.tabs__content >:first-child{
+  margin-top: 2px;
+}
