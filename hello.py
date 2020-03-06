@@ -7,10 +7,7 @@ from flask_mail import Message, Mail
 from flask_moment import Moment
 from wtforms import TextField, TextAreaField, SubmitField, SelectField, ValidationError, StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, DataRequired, Length
-from werkzeug.security import generate_password_hash, check_password_hash
 from config import Config
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin, login_user, login_required, fresh_login_required, logout_user, current_user
 from flask_uploads import patch_request_class, UploadSet, configure_uploads, IMAGES
 from datetime import datetime
 
@@ -45,20 +42,6 @@ app.register_blueprint(Main)
 Mail.init_app(app)
 Moment.init_app(app)
 
-class DevelopmentConfig(Config):
-    DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-        'sqlite:///' + os.path.join(Basedir, 'data-dev.sqlite')
-
-class TestingConfig(Config):
-    TESTING = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
-        'sqlite:///' + os.path.join(Basedir, 'data-test.sqlite')
-
-class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'sqlite:///' + os.path.join(Basedir, 'data.sqlite')
-
 class ContactForm(Form):
     FirstName= TextField("FirstName", validators=[InputRequired("Please")])
     LastName = TextField("LastName", validators=[DataRequired()])
@@ -69,11 +52,6 @@ class ContactForm(Form):
     Message = TextAreaField("Message")
     Submit = SubmitField("Submit")
 
-class User(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(15), unique=True)
-    email = db.Column(db.String(50), unique=True)
-    password = db.Column(db.String(80))
 
 @app.route('/')
 def Welcome():
